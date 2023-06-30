@@ -1,3 +1,7 @@
+package Atualizacoes;
+
+import Bases.Aluno;
+
 import java.util.ArrayList;
 import java.util.List;
 

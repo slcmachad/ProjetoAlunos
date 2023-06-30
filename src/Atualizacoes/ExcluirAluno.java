@@ -1,3 +1,7 @@
+package Atualizacoes;
+
+import Bases.Aluno;
+
 import java.util.List;
 
 public class ExcluirAluno {
@@ -11,9 +15,9 @@ public class ExcluirAluno {
             }
         }
         if(alunoRemovido){
-            System.out.println("Aluno removido com sucesso!");
+            System.out.println("Bases.Aluno removido com sucesso!");
         }else {
-            System.out.println("Aluno não foi encontrado");
+            System.out.println("Bases.Aluno não foi encontrado");
         }
     }
 }

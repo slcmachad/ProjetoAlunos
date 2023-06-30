@@ -1,3 +1,7 @@
+import Atualizacoes.BuscaAlunoPorNome;
+import Atualizacoes.CadastroAlunos;
+import Atualizacoes.ExcluirAluno;
+
 import java.util.Scanner;
 
 public class Principal {
@@ -11,8 +15,8 @@ public class Principal {
             System.out.println("Escolha uma opção");
             System.out.println("1 - Cadastrar um novo aluno");
             System.out.println("2 - Listar alunos");
-            System.out.println("3 - Buscar Aluno por Nome");
-            System.out.println("4 - Excluir Aluno");
+            System.out.println("3 - Buscar Bases.Aluno por Nome");
+            System.out.println("4 - Excluir Bases.Aluno");
             System.out.println("0 - Sair");
 
             int opcao = scanner.nextInt();
@@ -29,7 +33,7 @@ public class Principal {
                 String curso = scanner.next();
 
                 cadastro.cadastrarAluno(nome, idade, curso);
-                System.out.println("Aluno cadastrado com sucesso!\n");
+                System.out.println("Bases.Aluno cadastrado com sucesso!\n");
             } else if (opcao == 2) {
                 System.out.println("=== LISTA DE ALUNOS ===");
                 cadastro.listarAlunos();
