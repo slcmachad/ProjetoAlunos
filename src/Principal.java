@@ -12,6 +12,7 @@ public class Principal {
             System.out.println("1 - Cadastrar um novo aluno");
             System.out.println("2 - Listar alunos");
             System.out.println("3 - Buscar Aluno por Nome");
+            System.out.println("4 - Excluir Aluno");
             System.out.println("0 - Sair");
 
             int opcao = scanner.nextInt();
@@ -40,6 +41,13 @@ public class Principal {
                 BuscaAlunoPorNome busca = new BuscaAlunoPorNome();
                 busca.buscaAlunoPorNome(nomeBusca, cadastro.getListaAlunos());
                 System.out.println();
+            } else if (opcao == 4) {
+                System.out.println("=== EXCLUIR ALUNO ===");
+                System.out.println("Digite o nome do aluno a ser excluido:");
+                String nomeExclusao = scanner.next();
+
+                ExcluirAluno excluir = new ExcluirAluno();
+                excluir.excluirAluno(nomeExclusao, cadastro.getListaAlunos());
             } else if (opcao == 0) {
                 System.out.println("Saindo do programa...");
                 break;
