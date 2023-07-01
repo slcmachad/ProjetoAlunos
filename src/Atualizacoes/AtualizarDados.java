@@ -1,17 +1,9 @@
 package Atualizacoes;
-
 import Bases.Aluno;
-
 import java.util.Scanner;
 
 public class AtualizarDados {
     Scanner scanner = new Scanner(System.in);
-    public void atualizarDados(Aluno aluno, String nome, int idade,  String curso){
-        aluno.setNome(nome);
-        aluno.setCurso(curso);
-        aluno.setIdade(idade);
-        System.out.println("Dados do aluno atualizados com sucesso!");
-    }
 
     public void atualizar(Aluno aluno, int digito){
         switch (digito) {
