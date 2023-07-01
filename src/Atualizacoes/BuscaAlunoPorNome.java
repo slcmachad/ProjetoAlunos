@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuscaAlunoPorNome {
-    public static Aluno buscaAlunoPorNome(String nome, List<Aluno> listaAlunos) {
-
+    public List<Aluno> buscaAlunoPorNome(String nome, List<Aluno> listaAlunos) {
 
         List<Aluno> alunosEncontrados = new ArrayList<>();
+
         for (Aluno aluno : listaAlunos) {
             if (aluno.getNome().equalsIgnoreCase(nome)) {
                 alunosEncontrados.add(aluno);
@@ -25,13 +25,8 @@ public class BuscaAlunoPorNome {
                 System.out.println("Idade: " + aluno.getIdade());
                 System.out.println("Curso: " + aluno.getCurso());
                 System.out.println("--------------------------");
-                aluno1 = aluno;
-                return aluno1;
             }
-
         }
-        Aluno aluno1;
-
-                return aluno1;
+        return alunosEncontrados;
     }
 }

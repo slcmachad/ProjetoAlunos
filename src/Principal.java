@@ -4,6 +4,7 @@ import Atualizacoes.CadastroAlunos;
 import Atualizacoes.ExcluirAluno;
 import Bases.Aluno;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -61,15 +62,25 @@ public class Principal {
                 System.out.println("Digite o nome do aluno:");
                 String nomeAtualiza = scanner.next();
 
-                Aluno aluno = BuscaAlunoPorNome.buscaAlunoPorNome(nomeAtualiza, cadastro.getListaAlunos()) ;
-                System.out.println("O que gostaria de fazer?");
-                System.out.println("1 - Alterar o nome do aluno");
-                System.out.println("2 - Alterar a idade do aluno");
-                System.out.println("3 - Alterar o curso do aluno");
-                int digito = scanner.nextInt();
-                atualizar.atualizar(aluno, digito);
+                BuscaAlunoPorNome buscaAluno = new BuscaAlunoPorNome();
+                List<Aluno> alunosEncontrados = buscaAluno.buscaAlunoPorNome(nomeAtualiza, cadastro.getListaAlunos());
 
+                if(!alunosEncontrados.isEmpty()) {
+                    System.out.println("1 - Alterar o nome do aluno");
+                    System.out.println("2 - Alterar a idade do aluno");
+                    System.out.println("3 - Alterar o curso do aluno");
 
+                    int opcaoAtualiza = scanner.nextInt();
+
+                    AtualizarDados atualizarDados = new AtualizarDados();
+
+                    for (Aluno aluno: alunosEncontrados){
+                        atualizarDados.atualizar(aluno, opcaoAtualiza);
+                    }
+                    System.out.println("Dados atualizados com sucesso");
+                }else {
+                    System.out.println("Desculpe mas não foi encontrado nenhum aluno com o nome: " + nomeAtualiza);
+                }
             } else if (opcao == 0) {
                 System.out.println("Saindo do programa...");
                 break;
