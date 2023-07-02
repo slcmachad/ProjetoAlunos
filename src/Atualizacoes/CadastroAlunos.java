@@ -9,14 +9,12 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
 public class CadastroAlunos {
     private final String bancoDeDados = "dbAluno.json";
 
-    private final List<Aluno> listaAlunos;
+    private List<Aluno> listaAlunos;
 
     public CadastroAlunos(){
-
         listaAlunos = new ArrayList<>();
         carregarDoArquivo();
     }
@@ -72,4 +70,7 @@ public class CadastroAlunos {
         return listaAlunos;
     }
 
+    public void setListaAlunos(List<Aluno> listaAlunos) {
+        this.listaAlunos = listaAlunos;
+    }
 }

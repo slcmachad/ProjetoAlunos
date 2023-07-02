@@ -16,6 +16,10 @@ public class ExcluirAluno {
         }
         if(alunoRemovido){
             System.out.println("Bases.Aluno removido com sucesso!");
+
+            CadastroAlunos cadastro = new CadastroAlunos();
+            cadastro.setListaAlunos(listaAlunos);
+            cadastro.salvarNoBD();
         }else {
             System.out.println("Bases.Aluno não foi encontrado");
         }
