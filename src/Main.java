@@ -94,5 +94,30 @@ public class Main {
         });
         frame.add(buscarButton);
 
+        // campo para Excluir alunos
+
+        JButton atualizarButton = new JButton("Atualizar aluno");
+        frame.add(atualizarButton);
+        atualizarButton.addActionListener(e -> {
+            String nomeAtualiza = JOptionPane.showInputDialog(frame, "Digite o nome do aluno que deverá ser atualizado:");
+            List<Aluno> alunosEncontrados = busca.buscaAlunoPorNome(nomeAtualiza, cadastro.getListaAlunos());
+
+            if(!alunosEncontrados.isEmpty()){
+                String[] opcoes = {"Alterar nome do aluno", "Alterar idade do aluno", "Alterar curso do aluno"};
+                int opcaoEscolhida = JOptionPane.showOptionDialog(
+                        frame, "Selecione o dado a ser atualizado:",
+                        "Atualizar dados do aluno", JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]
+                );
+                if(opcaoEscolhida >= 0){
+                    for(Aluno aluno : alunosEncontrados){
+                        atualizarDados.atualizar(aluno, opcaoEscolhida +1);
+                    }
+                    JOptionPane.showMessageDialog(frame, "Dados Atualizados com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    JOptionPane.showMessageDialog(frame, "Nenhum aluno encontrado com esse nome!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
     }
 }
