@@ -54,6 +54,22 @@ public class Main {
         frame.setVisible(true);
 
         // campo de listagem
+        JTextArea listaAlunosTextArea = new JTextArea();
+        JScrollPane scrollPane = new JScrollPane(listaAlunosTextArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        frame.add(scrollPane);
+
+        JButton listarButton = new JButton("Listar alunos");
+        listarButton.addActionListener(e -> {
+            StringBuilder listaAlunos = new StringBuilder();
+            for (Aluno aluno : cadastro.getListaAlunos()) {
+                listaAlunos.append(aluno.getNome()).append(" - ")
+                        .append(aluno.getIdade()).append(" anos - ")
+                        .append(aluno.getCurso()).append("\n");
+            }
+            listaAlunosTextArea.setText(listaAlunos.toString());
+        });
+        frame.add(listarButton);
 
     }
 }
