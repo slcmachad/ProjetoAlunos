@@ -5,7 +5,10 @@ import java.util.List;
 import Atualizacoes.AtualizarDados;
 import Atualizacoes.BuscaAlunoPorNome;
 import Atualizacoes.CadastroAlunos;
+import Atualizacoes.ExcluirAluno;
 import Bases.Aluno;
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -47,11 +50,7 @@ public class Main {
             idadeTextField.setText("");
             cursoTextField.setText("");
         });
-
         frame.add(cadastrarButton);
-
-        frame.pack();
-        frame.setVisible(true);
 
         // campo de listagem
         JTextArea listaAlunosTextArea = new JTextArea();
@@ -96,6 +95,30 @@ public class Main {
 
         // campo para Excluir alunos
 
+        JButton excluirButton = new JButton("Excluir aluno");
+        frame.add(excluirButton);
+        excluirButton.addActionListener(e -> {
+            String nomeExclusao = JOptionPane.showInputDialog(
+                    frame,
+                    "Digite o nome do aluno a ser excluído:",
+                    "Excluir aluno",
+                    JOptionPane.PLAIN_MESSAGE
+                    );
+            if(nomeExclusao != null){
+                ExcluirAluno excluir = new ExcluirAluno();
+                excluir.excluirAluno(nomeExclusao, cadastro.getListaAlunos());
+                JOptionPane.showMessageDialog(
+                        frame,
+                        "Aluno excluido com sucesso",
+                        "Exclusão do aluno",
+                        JOptionPane.INFORMATION_MESSAGE
+                        );
+                atualizarExibiçãoDosAlunos(listaAlunosTextArea, cadastro);
+            }
+        });
+
+        // campo para atualizar alunos
+
         JButton atualizarButton = new JButton("Atualizar aluno");
         frame.add(atualizarButton);
         atualizarButton.addActionListener(e -> {
@@ -119,5 +142,17 @@ public class Main {
                 }
             }
         });
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private static void atualizarExibiçãoDosAlunos(JTextArea listaAlunosTextArea, CadastroAlunos cadastro) {
+        StringBuilder listaAlunos = new StringBuilder();
+        for (Aluno aluno : cadastro.getListaAlunos()) {
+            listaAlunos.append(aluno.getNome()).append(" - ")
+                    .append(aluno.getIdade()).append(" anos - ")
+                    .append(aluno.getCurso()).append("\n");
+        }
+        listaAlunosTextArea.setText(listaAlunos.toString());
     }
 }
