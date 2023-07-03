@@ -71,5 +71,28 @@ public class Main {
         });
         frame.add(listarButton);
 
+        // Campo de busca
+
+        JLabel buscaLabel = new JLabel("Buscar por nome: ");
+        frame.add(buscaLabel);
+        JTextField buscaTextField = new JTextField();
+        frame.add(buscaTextField);
+
+        JButton buscarButton = new JButton("Buscar");
+        buscarButton.addActionListener(e -> {
+            String nomeBusca = buscaTextField.getText();
+            List<Aluno> alunosEncontrados = busca.buscaAlunoPorNome(nomeBusca, cadastro.getListaAlunos());
+
+            StringBuilder resultado = new StringBuilder();
+            for (Aluno aluno : alunosEncontrados) {
+                resultado.append("Nome: ").append(aluno.getNome())
+                        .append("\nIdade: ").append(aluno.getIdade())
+                        .append("\nCurso: ").append(aluno.getCurso())
+                        .append("\n");
+            }
+            JOptionPane.showMessageDialog(frame, resultado.toString(), "Resultados da busca", JOptionPane.INFORMATION_MESSAGE);
+        });
+        frame.add(buscarButton);
+
     }
 }
