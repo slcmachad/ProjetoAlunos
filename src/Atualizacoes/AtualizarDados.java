@@ -1,28 +1,66 @@
 package Atualizacoes;
+
 import Bases.Aluno;
-import java.util.Scanner;
+
+import javax.swing.*;
+
 
 public class AtualizarDados {
-    Scanner scanner = new Scanner(System.in);
 
-    public void atualizar(Aluno aluno, int digito){
+
+    public void atualizar(Aluno aluno, int digito) {
         switch (digito) {
             case 1 -> {
-                System.out.println("Digite a correção do nome do aluno:");
-                String nome = scanner.next();
-                aluno.setNome(nome);
+                String novoNome = JOptionPane
+                        .showInputDialog(null,
+                                "Digite o nome corrigido: ",
+                                "Atualizar Nome",
+                                JOptionPane.PLAIN_MESSAGE
+                        );
+                if (novoNome != null) {
+                    aluno.setNome(novoNome);
+                }
             }
             case 2 -> {
-                System.out.println("Digite idade do aluno:");
-                int idade = scanner.nextInt();
-                aluno.setIdade(idade);
+                String novaIdade = JOptionPane.showInputDialog(
+                        null,
+                        "Digite a idade correta do aluno: ",
+                        "Atualizar idade",
+                        JOptionPane.PLAIN_MESSAGE
+                );
+                if (novaIdade != null) {
+                    try {
+                        int idade = Integer.parseInt(novaIdade);
+                        aluno.setIdade(idade);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Valor invalido, digite apenas numeros!",
+                                "Erro",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                }
             }
             case 3 -> {
-                System.out.println("Digite o curso do aluno:");
-                String curso = scanner.next();
-                aluno.setCurso(curso);
+                String curso = JOptionPane.showInputDialog(
+                        null,
+                        "Digite o curso do aluno:",
+                        "Atualizar curso",
+                        JOptionPane.PLAIN_MESSAGE
+                );
+                if (curso != null) {
+                    aluno.setCurso(curso);
+                }
             }
-            default -> System.out.println("Opção inválida!");
+            default -> {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Opção inválida!",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         }
     }
 }
