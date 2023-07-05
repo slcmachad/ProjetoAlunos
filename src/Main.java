@@ -1,15 +1,61 @@
-//import javax.swing.*;
-//import java.awt.*;
-//import java.util.List;
-//
-//import Atualizacoes.AtualizarDados;
-//import Atualizacoes.BuscaAlunoPorNome;
-//import Atualizacoes.CadastroAlunos;
-//import Atualizacoes.ExcluirAluno;
-//import Bases.Aluno;
-//
-//
-//public class Main {
+import Atualizacoes.CadastroAlunos;
+
+import BancoDeDados.PersistenciaBancoDados;
+import Interfaces.PersistenciaAluno;
+import InterfacesMetodos.ExcluirAlunoInterface;
+import InterfacesMetodos.InterfaceCadastroAlunos;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Main extends JFrame {
+    private CadastroAlunos cadastroDeAlunos;
+    private InterfaceCadastroAlunos interfaceCadastro;
+    private JButton btnExcluirAluno;
+
+    public Main() {
+        PersistenciaAluno persistencia = new PersistenciaBancoDados();
+        cadastroDeAlunos = new CadastroAlunos(persistencia);
+
+        setTitle("Sistema de Cadastro de Alunos");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(400, 400));
+
+        interfaceCadastro = new InterfaceCadastroAlunos(cadastroDeAlunos);
+        btnExcluirAluno = new JButton("Excluir Aluno");
+
+        setLayout(new BorderLayout());
+        add(interfaceCadastro, BorderLayout.CENTER);
+        add(btnExcluirAluno, BorderLayout.SOUTH);
+
+        btnExcluirAluno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirExcluirAlunoInterface();
+            }
+        });
+
+        pack();
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Main();
+            }
+        });
+    }
+
+    private void abrirExcluirAlunoInterface() {
+        ExcluirAlunoInterface excluirAlunoInterface = new ExcluirAlunoInterface(cadastroDeAlunos.getListaAlunos(), cadastroDeAlunos.getPersistencia());
+        excluirAlunoInterface.setVisible(true);
+    }
+}
+
 //
 //    public static void main(String[] args) {
 //        CadastroAlunos cadastro = new CadastroAlunos();
