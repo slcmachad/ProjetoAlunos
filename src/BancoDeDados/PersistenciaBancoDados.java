@@ -1,4 +1,4 @@
-package CadastrosAlunos;
+package BancoDeDados;
 
 import Bases.Aluno;
 import Interfaces.PersistenciaAluno;

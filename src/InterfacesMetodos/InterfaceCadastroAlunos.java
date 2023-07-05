@@ -1,5 +1,6 @@
-package CadastrosAlunos;
+package InterfacesMetodos;
 
+import BancoDeDados.PersistenciaBancoDados;
 import Bases.Aluno;
 
 import javax.swing.*;
