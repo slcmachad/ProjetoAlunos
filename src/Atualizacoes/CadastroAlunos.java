@@ -28,4 +28,8 @@ public class CadastroAlunos {
     public void setListaAlunos(List<Aluno> listaAlunos) {
         this.listaAlunos = listaAlunos;
     }
+
+    public PersistenciaAluno getPersistencia() {
+        return persistencia;
+    }
 }

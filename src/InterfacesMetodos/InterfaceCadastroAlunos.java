@@ -1,6 +1,6 @@
 package InterfacesMetodos;
 
-import BancoDeDados.PersistenciaBancoDados;
+import Atualizacoes.CadastroAlunos;
 import Bases.Aluno;
 
 import javax.swing.*;
@@ -8,11 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Atualizacoes.CadastroAlunos;
 import Interfaces.PersistenciaAluno;
 
 public class InterfaceCadastroAlunos extends JFrame {
     private CadastroAlunos cadastro;
+    private PersistenciaAluno persistencia;
 
     private JTextField txtNome;
     private JTextField txtIdade;
@@ -65,16 +65,6 @@ public class InterfaceCadastroAlunos extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        PersistenciaAluno persistencia = new PersistenciaBancoDados();
-        CadastroAlunos cadastroDeAlunos = new CadastroAlunos(persistencia);
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new InterfaceCadastroAlunos(cadastroDeAlunos);
-            }
-        });
-    }
 
     private void atualizarListaAluno() {
         txtAlunos.setText("");
